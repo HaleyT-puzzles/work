@@ -1,0 +1,63 @@
+# Set the title of the screen session
+sessionname GIT_DEV
+
+# Go read the man page to figure out what this means.
+#caption always "%{= kg}%?%F%{+b}%?%02C:%s%a %D %M %d%{-b}%{+ .y}|%{-}%L=%-Lw%?%F%{+b .Y}%:%{+ .Y}%?%50L>(%n%f %t)%{-}%+Lw%<"
+caption always "%{=b bR}|%{+ .C}%C%a %D %M %d%{-}|%{+ .G}%L=%-Lw%?%F%{+ .Y}%:%{+ .G}%?%50L>[%n%f %t]%{-}%+Lw%<"
+
+# You can also set up the activity monitoring message to be more informative.
+activity "Activity in window %n [%t] (%C:%s%a)"
+
+# Better amount of scrollback than 100
+defscrollback 1800
+
+# Unbind control-A.
+bind "^A"
+# Use control-J instead.
+bindkey -d "^J" command
+# Needed so that ^A is registered again by the console,
+# and ^Jg will send ^J to the console.
+escape "^Jj"
+
+# Alternatives for control-J: Meta-w, F11 (yes, 11, it's
+# not a mistake.
+bindkey -d -k "F1" command
+
+# Re-display last message.
+bind m lastmsg
+# When you split the screen into multiple regions (each displaying
+# its own window) you can use these to move around them, vi-like.
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+# From vim, make current focused region the only region on the screen
+bind o only
+bind = resize +3
+bind - resize -3
+
+# Cute happy and somewhat obscure messages.
+#nethack on
+
+# I turn on xterm indiscriminately 'cause w3m is cooler with
+# mouse term reporting.
+vbell off
+term xterm-256color
+
+# Enable me to connect to my screens at the same time from different computers
+acladd haleyt
+
+#initial screen windows
+chdir /home/haleyt
+screen -T xterm-256color -t DEV_1_1 0
+screen -T xterm-256color -t DEV_1_2 1
+screen -T xterm-256color -t TEST_RUNNER_1 2
+screen -T xterm-256color -t TEST_EDIT_1 3
+screen -T xterm-256color -t DEV_2_1 4
+screen -T xterm-256color -t DEV_2_2 5
+screen -T xterm-256color -t TEST_RUNNER_2 6
+screen -T xterm-256color -t TEST_EDIT_2 7
+screen -T xterm-256color -t DEV_QUERIES 8
+screen -T xterm-256color -t PROD_QUERIES 9
+#end of screenrc
+
